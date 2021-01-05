@@ -16,7 +16,7 @@
         <td><input @click="append('7')" type="button" name="one" value="7"></td>
         <td><input @click="append('8')" type="button" name="two" value="8"></td>
         <td><input @click="append('9')" type="button" name="three" value="9"></td>
-        <td><input class="btnyellow" type="button" name="plus" @click="times" value="*"></td>
+        <td><input class="btnyellow" type="button" name="plus" @click="times" value="X"></td>
       </tr>
       <tr>
         <td><input @click="append('4')" type="button" name="four" value="4"></td>
@@ -28,7 +28,7 @@
         <td><input @click="append('1')" type="button" name="seven" value="1"></td>
         <td><input @click="append('2')" type="button" name="eight" value="2"></td>
         <td><input @click="append('3')" type="button" name="nine" value="3"></td>
-        <td><input class="btnyellow" @click="add" type="button" name="times" value="x"></td>
+        <td><input class="btnyellow" @click="add" type="button" name="times" value="+"></td>
       </tr>
       <tr>
         <td colspan="2"><input @click="append('0')" type="button" class="operator btnzero" name="zero" value="0"></td>
@@ -80,7 +80,7 @@ export default {
       this.operatorClicked = true;
     },
     divide(){
-      this.operator = (a, b) => a / b;
+      this.operator = (a, b) => b / a;
       this.setPrevious();
     },
     times(){
@@ -88,7 +88,7 @@ export default {
       this.setPrevious();
     },
     minus() {
-      this.operator = (a, b) => a - b;
+      this.operator = (a, b) => b - a;
       this.setPrevious();
     },
     add() {
