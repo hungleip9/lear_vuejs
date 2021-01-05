@@ -11,7 +11,7 @@
       </tr>
       <tr>
         <td><input type="button" value="C" @click="clear"></td>
-        <td><input type="button" value="DEL"></td>
+        <td><input type="button" value="DEL" @click="del"></td>
         <td><input type="button" value="%" @click="percent"></td>
         <td><input class="btnyellow" type="button" value="÷" @click="divide"></td>
       </tr>
@@ -63,6 +63,9 @@ export default {
     // },
     clear(){
       this.content= '';
+    },
+    del(){
+      this.content= this.content.slice(0, -1);
     },
     append(number){
       if (this.operatorClicked) {
