@@ -3,14 +3,17 @@
     <table>
       <tr>
         <td colspan="4">
-          <div class="display"><p>{{content || '0'}}</p></div>
+          <div class="display">
+            <h2>{{content || '0'}}</h2>
+            <p>{{toantu}}</p>
+          </div>
         </td>
       </tr>
       <tr>
         <td><input type="button" value="C" @click="clear"></td>
         <td><input type="button" value="DEL"></td>
         <td><input type="button" value="%" @click="percent"></td>
-        <td><input class="btnyellow" type="button" value="/" @click="divide"></td>
+        <td><input class="btnyellow" type="button" value="÷" @click="divide"></td>
       </tr>
       <tr>
         <td><input @click="append('7')" type="button" name="one" value="7"></td>
@@ -46,10 +49,11 @@ export default {
 
   data (){
     return{
-      content: '600',
+      content: '',
       operator: null,
       operatorClicked: false,
       previous: null,
+      toantu: '',
 
     }
   },
@@ -82,23 +86,28 @@ export default {
     divide(){
       this.operator = (a, b) => b / a;
       this.setPrevious();
+      this.toantu = '÷';
     },
     times(){
       this.operator = (a, b) => a * b;
       this.setPrevious();
+      this.toantu = 'X';
     },
     minus() {
       this.operator = (a, b) => b - a;
       this.setPrevious();
+      this.toantu = '-';
     },
     add() {
       this.operator = (a, b) => a + b;
       this.setPrevious();
+      this.toantu = '+';
     },
     equal() {
       this.content = `${this.operator(
           parseFloat(this.content),
-          parseFloat(this.previous)
+          parseFloat(this.previous),
+          this.toantu = '',
       )}`;
       this.previous = null;
     }
@@ -133,13 +142,20 @@ export default {
       margin-top: -10px;
       border-radius: 10px;
       position: relative;
-        p{
-          font-size: 20px;
+        h2{
+          font-size: 25px;
           font-weight: bold;
           position: absolute;
           color: white;
           bottom: 0px;
           right: 20px;
+        }
+        p{
+          position: absolute;
+          top: 0px;
+          right: 10px;
+          font-size: 13px;
+          color: white;
         }
       }
     tr{
