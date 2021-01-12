@@ -19,8 +19,8 @@
 // import Bai1_3 from './components/Bai1_3.vue'
 // import Test from './components/Test.vue'
 // import Bai2 from './components/Bai2.vue'
-import Bai2_1 from './components/Bai2_1.vue'
-// import Bai2_2 from './components/Bai2_2.vue'
+// import Bai2_1 from './components/Bai2_1.vue'
+import Bai2_2 from './components/Bai2_2.vue'
 
 
 export default {
@@ -31,8 +31,8 @@ export default {
     // Bai1_3,
     // Test,
     // Bai2,
-    Bai2_1
-    // Bai2_2
+    // Bai2_1
+    Bai2_2
     
   }
 }
