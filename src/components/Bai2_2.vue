@@ -76,7 +76,7 @@
             <td><input type="number" class="quantityInput" min="0"
                        @keydown.enter="onchange(product.id,$event.target.value)"
                        :value="product.quantity"></td>
-            <td><input type="button" class="clearButton" @click="deleteProduct(product.id)" value="Xóa"></td>
+            <td><input type="button" class="clearButton" @click="clear(product.id)" value="Xóa"></td>
           </tr>
           </tbody>
         </table>
@@ -174,7 +174,7 @@ export default {
         alert('Sản phẩm hết hàng');
       }
     },
-    deleteProduct(id) {
+    clear(id) {
       this.carts = this.carts.filter((cart) => {
         return cart.id != id;
       });
