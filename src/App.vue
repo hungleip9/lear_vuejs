@@ -2,20 +2,23 @@
   <div id="app">
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
     
-    <B3_1_header />
+    <!-- <B3_1_header /> -->
+    <Exercise />
   
   </div>
 </template>
 
 <script>
-import B3_1_header from './components/Ex3/B3_1_header.vue'
+// import B3_1_header from './components/Ex3/B3_1_header.vue'
+import Exercise from './components/Ex3/Exercise.vue'
 
 
 export default {
   name: 'App',
   components: {
     
-    B3_1_header
+    // B3_1_header,
+    Exercise,
     
   }
 }
