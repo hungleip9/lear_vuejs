@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <form action="" @submit.prevent="SubmitForm">
+  
       <div class="loginWrap">
+          <form action="" @submit.prevent="SubmitForm">
         <div class="inputWrap">
           <div class="inputLabel">Tên đăng nhập</div>
           <input type="text" v-model="name">
@@ -20,9 +21,9 @@
         </div>
         <button class="btnSave" style="background: #0080dd!important;" @click="onClick">Save</button>
         <button class="btnClear" style="background: #e66e6e!important;" @click="clear">Clear</button>
-
+         </form>
       </div>
-    </form>
+   
     <div class="infoWrap">
       <div class="infoLabel">
         Xin Chào: {{names}} <br>

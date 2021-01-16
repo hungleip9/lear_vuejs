@@ -1,13 +1,15 @@
 <template>
   <div id="app">
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
-    <Bai1_2 />
+    <!-- <Bai1_2 />
     <Bai1_1 />
     <Bai1_3 />
     <Test />
     <Bai2 />
     <Bai2_1 />
-    <Bai2_2 />
+    <Bai2_2 /> -->
+    <!-- <Login /> -->
+    <Bai3_1 />
   
   </div>
 </template>
@@ -20,7 +22,9 @@
 // import Test from './components/Test.vue'
 // import Bai2 from './components/Bai2.vue'
 // import Bai2_1 from './components/Bai2_1.vue'
-import Bai2_2 from './components/Bai2_2.vue'
+// import Bai2_2 from './components/Bai2_2.vue'
+// import Login from './components/Ex3/Login.vue'
+import Bai3_1 from './components/Ex3/Bai3_1.vue'
 
 
 export default {
@@ -32,7 +36,9 @@ export default {
     // Test,
     // Bai2,
     // Bai2_1
-    Bai2_2
+    // Bai2_2
+    // Login
+    Bai3_1
     
   }
 }
