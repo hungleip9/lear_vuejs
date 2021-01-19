@@ -6,35 +6,35 @@
                 <template v-slot:banner>
                     <el-image
                         width="100%"
-                        src="https://wallpaperaccess.com/full/2461288.jpg">
+                        src="https://img4.thuthuatphanmem.vn/uploads/2020/08/04/hinh-anime-cac-co-nang-toc-tim-hiem_102944405.jpg">
                     </el-image>
                 </template>
                 <template v-slot:adsLeft>
                     <el-image
-                        src="https://i2.wp.com/www.wplastics.com/wp-content/uploads/2020/05/Lumint-ad-Side-Bar.png?ssl=1"
+                        src="https://dzdigi.com/wp-content/uploads/2020/10/25-hinh-anh-nhan-vat-anime-dep-trai-nhat-1.jpg"
                         :fit="fill">
                     </el-image>
                 </template>
                 <template v-slot:content>
                     <el-breadcrumb separator="/"  style="margin: 20px 0; font-size: 13px;">
                         <el-breadcrumb-item>Trang chủ</el-breadcrumb-item>
-                        <el-breadcrumb-item>Công nghệ</el-breadcrumb-item>
-                        <el-breadcrumb-item>Trên tay Samsung Galaxy Buds Pro: đẹp và nhiều công nghệ</el-breadcrumb-item>
+                        <el-breadcrumb-item>Anime</el-breadcrumb-item>
+                        <el-breadcrumb-item>Atack on titan là bộ anime ăn khách nhất 2018</el-breadcrumb-item>
                     </el-breadcrumb>
                     <div>
                         <el-image style="border-radius: 20px"
-                            src="https://photo2.tinhte.vn/data/attachment-files/2021/01/5305182_tren_tay_bud_pro_tinhte-7.jpg">
+                            src="https://i.pinimg.com/474x/f8/6f/c4/f86fc4f39be083b5705a40de4c998b47.jpg">
                         </el-image>
                         <p style="text-align: left; font-size: 15px">
-                            Galaxy Buds Pro là một chiếc tai nghe đặc biệt và thú vị của Samsung. Nó là sản phẩm nối 
-                            tiếp với chiếc Galayx Buds ra mắt trước đó nhưng được trang bị nhiều tính năng hơn, nhiều 
-                            công nghệ hơn và mục đích là làm sao nâng cao trải nghiệm của người dùng.
+                            Anime đại chiến titan có rất nhiều cảnh hoành tráng, đã có thời điểm bộ anime này 
+                            đã vượt qua cả one pice truyện bán ra, cốt truyện lôi cuốn, logic và chân thưc. Truyện 
+                            có chiều sâu.
                         </p>
                     </div>
                 </template>
                 <template v-slot:adsRight>
                     <el-image
-                        src="https://i2.wp.com/www.wplastics.com/wp-content/uploads/2020/05/Lumint-ad-Side-Bar.png?ssl=1"
+                        src="https://i.pinimg.com/564x/c0/54/7e/c0547e2fffedcdd8d7d262af9ceffc33.jpg"
                         :fit="fill">
                     </el-image>
                 </template>
