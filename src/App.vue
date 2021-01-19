@@ -3,14 +3,23 @@
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
     
     <!-- <B3_1_header /> -->
-    <Exercise />
+    <!-- <Exercise /> -->
+    <!-- <Bai4 /> -->
+    <!-- <Page /> -->
+    <!-- <Ex4Text /> -->
+    <Bai4_1 />
   
   </div>
 </template>
 
 <script>
 // import B3_1_header from './components/Ex3/B3_1_header.vue'
-import Exercise from './components/Ex3/Exercise.vue'
+// import Exercise from './components/Ex3/Exercise.vue'
+// import Bai4 from './components/Ex4/Bai4.vue'
+// import Page from './components/Ex4/Page.vue'
+// import Ex4Text from './components/Ex4/Test.vue'
+import Bai4_1 from './components/Ex4/BaiTap/Page.vue'
+
 
 
 export default {
@@ -18,8 +27,11 @@ export default {
   components: {
     
     // B3_1_header,
-    Exercise,
-    
+    // Exercise,
+    // Bai4
+    // Page
+    // Ex4Text
+    Bai4_1
   }
 }
 </script>

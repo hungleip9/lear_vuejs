@@ -1,67 +1,73 @@
 <template>
-  <div class="container">
-      <div class="content">
-          <div class="ProductForm">
-              <ProductForm @onCreateWork="getData" />
-          </div>
-          <div class="ProductList">
-              <ProductList :keywords="keyword" :carts="cart" />
-          </div>
-          <div class="clear"></div>
-        
-        
-      </div>
-    
-  </div>
-
+    <div class="container">
+        <ProductForm
+            :product="product"
+            @onCreateProduct="createProduct"
+            @onUpdateProduct="updateProduct"
+            @onClear="clearData"
+        />
+        <ProductList
+            :products="products"
+            @onEditProduct="editProduct"
+            @onDeleteProduct="deleteProduct"
+        />
+    </div>
 </template>
 
 <script>
-import ProductForm from './ProductForm'
-import ProductList from './ProductList'
-export default {
-  components:{
-    ProductForm,
-    ProductList,
-  },
-  data (){
-    return{
-        keyword:'',
-        cart:'',
-    }
-  },
-  methods: {
-    getData(data) {
-      this.keyword = data.keyword
-      this.cart = data.cart
+  import ProductForm from './ProductForm'
+  import ProductList from './ProductList'
+
+  export default {
+    name: 'Exercise',
+    components: {
+      ProductForm,
+      ProductList
     },
-  },
-}
+    data () {
+      return {
+        products: [],
+        product: {}
+      }
+    },
+    methods: {
+      createProduct (product) {
+        this.products.push(product)
+      },
+      updateProduct (editableProduct) {
+        let index = this.products.findIndex((product) => {return product.id === editableProduct.id})
+        if (index !== -1) {
+          let newProducts = JSON.parse(JSON.stringify(this.products))
+          newProducts[index] = {
+            ...newProducts[index],
+            name: editableProduct.name,
+            price: editableProduct.price,
+            quantity: editableProduct.quantity,
+          }
+          this.products = newProducts
+        }
+      },
+      editProduct(product) {
+        this.product = product
+      },
+      deleteProduct (index) {
+        this.products.splice(index, 1)
+      },
+      clearData () {
+        this.product = {}
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
-     .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 800px;
-    .content {
-        width: 100%;
-        height: 700px;
-        background: white;
-        .ProductForm{
-            width: 40%;
-            height: 100%;
-           float: left;
-        }
-        .ProductList{
-            width: 60%;
-            height: 100%;
-            float: right;
-        }
-        .clear{
-            clear: both;
-        }
+    $colorDefault: #253036;
+
+    .container {
+        height: 100vh;
+        padding: 24px;
+        color: $colorDefault;
+        display: flex;
+        align-items: flex-start;
     }
-  }
 </style>
