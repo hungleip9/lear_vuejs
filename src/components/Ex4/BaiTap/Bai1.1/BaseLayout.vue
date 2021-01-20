@@ -43,7 +43,7 @@
                             <div>12</div>
                         </i>
                         <el-dropdown >
-                            <el-avatar :size="40" :src="circleUrl"></el-avatar>
+                            <el-avatar :size="40" :src="img"></el-avatar>
                             <el-dropdown-menu slot="dropdown" style="margin: 0; top: 70px !important">
                                 <el-dropdown-item>Thông tin tài khoản</el-dropdown-item>
                                 <el-dropdown-item>Đổi mật khẩu</el-dropdown-item>
@@ -66,7 +66,7 @@ export default {
     name: 'BaseLayout',
     data() {
         return {
-            circleUrl: "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/29c049f1148e9c9643882cab50bded5f.jpeg",
+            img: "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/29c049f1148e9c9643882cab50bded5f.jpeg",
         }
     },
     methods: {
