@@ -37,9 +37,9 @@ export default {
         login() {
             if (this.email != '' && this.pw != '') {
                 this.$emit("authenticated", true);
-                this.$router.replace({ name: "Dashboard" });
+                this.$router.replace({ name: "Admin" });
             }else {
-              this.$router.replace({ name: "Admin" });
+              this.$router.replace({ name: "Login" });
             }
         }
     }
