@@ -27,18 +27,23 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: 'Admin',
+    name: 'Dashboard',
     component: () => import('../components/Dashboard.vue')
   },
   {
-    path: '/dashboard',
-    name: 'Admin',
+    path: '/orders',
+    name: 'Orders',
     component: () => import('../components/Orders.vue')
   },
   {
-    path: '/dashboard',
-    name: 'Admin',
+    path: '/products',
+    name: 'Products',
     component: () => import('../components/Products.vue')
+  },
+  {
+    path: '/dangky',
+    name: 'Dangky',
+    component: () => import('../views/DangKy.vue')
   },
 ]
 

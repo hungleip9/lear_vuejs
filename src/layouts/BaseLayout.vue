@@ -63,7 +63,9 @@
                                 <el-dropdown-item>Thông tin tài khoản</el-dropdown-item>
                                 <el-dropdown-item>Đổi mật khẩu</el-dropdown-item>
                                 <el-dropdown-item>Cấu hình</el-dropdown-item>
+                              <router-link to="Login" style="color: #fff;text-decoration:none">
                                 <el-dropdown-item style="border-top: 1px solid #F1F3F8">Đăng xuất</el-dropdown-item>
+                              </router-link>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-col>
