@@ -61,7 +61,7 @@ const routes = [
   {
     path: '/editUser',
     name: 'EditUser',
-    component: () => import('../views/EditUser.vue')
+    component: () => import('../components/EditUser.vue')
   },
 ]
 

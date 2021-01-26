@@ -30,6 +30,8 @@
 <script>
 export default {
     name: "login",
+    components:{
+    },
     data() {
         return {
             email: '',

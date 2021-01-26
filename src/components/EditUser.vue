@@ -67,10 +67,6 @@ export default {
             this.$router.replace({ name: "EditUser" });
             }
         },
-      dangky(){
-        this.$router.replace({ name: "Dangky" });
-      },
-      
     }
 }
 </script>
@@ -81,7 +77,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to bottom right,  #0595E7, #7ECFC7);
+    background-image: linear-gradient(to bottom right,  #0f1010, #7ECFC7);
     height: 700px;
     .el-card {
         width: 29%;
