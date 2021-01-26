@@ -53,14 +53,17 @@
                     <el-col :span="14" class="title">
                         <slot name="title"></slot>
                     </el-col>
-                    <el-col :span="10" class="avatar">
+                    <el-col :span="10" class="avatar" style="margin-left:550px!important">
                         <i class="el-icon-bell">
                             <div>12</div>
                         </i>
                         <el-dropdown >
                             <el-avatar :size="40" :src="circleUrl"></el-avatar>
                             <el-dropdown-menu slot="dropdown" style="margin: 0; top: 70px !important">
-                                <el-dropdown-item>Thông tin tài khoản</el-dropdown-item>
+                                <el-dropdown-item style="border-top: 1px solid #F1F3F8">Thông tin tài khoản</el-dropdown-item>
+                                <router-link to="editUser" style="color: #fff;text-decoration:none">
+                                <el-dropdown-item style="border-top: 1px solid #F1F3F8">Sửa thông tin tài khoản</el-dropdown-item>
+                              </router-link>
                                 <el-dropdown-item>Đổi mật khẩu</el-dropdown-item>
                                 <el-dropdown-item>Cấu hình</el-dropdown-item>
                               <router-link to="Login" style="color: #fff;text-decoration:none">

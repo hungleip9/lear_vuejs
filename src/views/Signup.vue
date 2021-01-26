@@ -7,6 +7,11 @@
         fill>
 
       </el-image>
+      <el-input
+            style="padding: 10px 0;"
+            placeholder="Name"
+            v-model="name">
+        </el-input>
         <el-input
             style="padding: 10px 0;"
             placeholder="Email"
@@ -18,11 +23,13 @@
             placeholder="Mật khẩu"
             v-model="pw">
         </el-input>
-        <div style="text-align: right; margin-top: 8px; margin-bottom: 24px">
-          <el-link type="primary" style="padding-right:10px; color:#0080dd" @click="signup">Đăng Ký</el-link>
-            <el-link type="primary" style="color:#0080dd" @click="dangky">Quên mật khẩu?</el-link>
-        </div>
-        <el-button type="primary" :plain="true" @click="login" style="color:white">ĐĂNG NHẬP</el-button>
+        <el-input
+            type="password"
+            style="padding: 10px 0;"
+            placeholder="Nhập lại mật khẩu"
+            v-model="rpw">
+        </el-input>
+        <el-button type="primary" :plain="true" @click="signup" style="color:white">ĐĂNG KÝ</el-button>
     </el-card>
   </div>
 </template>
@@ -32,31 +39,43 @@ export default {
     name: "login",
     data() {
         return {
+            name: '',
             email: '',
             pw: '',
+            rpw: '',
         }
     },
     methods: {
-        login() {
-            if (this.email != '' && this.pw != '') {
+        signup() {
+            if (this.name != '' && this.email != '' && this.pw != '' && this.rpw != '' && this.pw == this.rpw) {
                 this.$emit("authenticated", true);
                 this.$router.replace({ name: "Admin" });
             }
+            else if(this.name == ''){
+            this.$message.error('Tên không được trống.');
+            this.$router.replace({ name: "Signup" });
+            }
             else if(this.email == ''){
               this.$message.error('Email không được trống.');
-              this.$router.replace({ name: "Login" });
+              this.$router.replace({ name: "Signup" });
             }
-          else if(this.pw == ''){
+            else if(this.pw == ''){
             this.$message.error('Mật khẩu không được trống.');
-            this.$router.replace({ name: "Login" });
-          }
+            this.$router.replace({ name: "Signup" });
+            }
+            else if(this.rpw == ''){
+            this.$message.error('Mật khẩu xác thực không được trống.');
+            this.$router.replace({ name: "Signup" });
+            }
+            else if(this.rpw != this.pw){
+            this.$message.error('Mật khẩu xác thực trùng nhau.');
+            this.$router.replace({ name: "Signup" });
+            }
         },
       dangky(){
         this.$router.replace({ name: "Dangky" });
       },
-      signup(){
-        this.$router.replace({ name: "Signup" });
-      },
+      
     }
 }
 </script>

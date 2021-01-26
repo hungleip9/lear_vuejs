@@ -1,8 +1,9 @@
 <template>
     <div>
         <!-- <template v-slot:title class="title"> -->
-            Dashboard
+           
         <!-- </template> -->
+         <span>Dashboard</span>
     </div>
 </template>
 

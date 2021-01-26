@@ -5,25 +5,33 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+ 
   {
     path: '/',
-    name: 'Home',
-    // component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/Ex4/Bai1.2/NewsDetailPage.vue')
-  },
-  {
-    path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
   },
   {
     path: '/admin',
     name: 'Admin',
-    component: () => import('../views/Admin.vue')
+    component: () => import('../views/Admin.vue'),
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('../components/Dashboard.vue'),
+      },
+      {
+        path: 'products',
+        name: 'Products',
+        component: () => import('../components/Products.vue'),
+      },
+      {
+        path: 'orders',
+        name: 'Orders',
+        component: () => import('../components/Orders.vue'),
+      }
+    ]
   },
   {
     path: '/dashboard',
@@ -44,6 +52,16 @@ const routes = [
     path: '/dangky',
     name: 'Dangky',
     component: () => import('../views/DangKy.vue')
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: () => import('../views/Signup.vue')
+  },
+  {
+    path: '/editUser',
+    name: 'EditUser',
+    component: () => import('../views/EditUser.vue')
   },
 ]
 
