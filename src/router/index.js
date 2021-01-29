@@ -16,22 +16,37 @@ const routes = [
     name: 'Admin',
     component: () => import('../views/Admin.vue'),
     children: [
-      {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import('../components/Dashboard.vue'),
-      },
-      {
-        path: 'products',
-        name: 'Products',
-        component: () => import('../components/Products.vue'),
-      },
-      {
-        path: 'orders',
-        name: 'Orders',
-        component: () => import('../components/Orders.vue'),
-      }
+      // {
+      //   path: '/dashboard',
+      //   name: 'Dashboard',
+      //   component: () => import('../components/Dashboard.vue'),
+      // },
+      // {
+      //   path: '/products',
+      //   name: 'Products',
+      //   component: () => import('../components/Products.vue'),
+      // },
+      // {
+      //   path: '/orders',
+      //   name: 'Orders',
+      //   component: () => import('../components/Orders.vue'),
+      // }
     ]
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue')
+  },
+  {
+    path: '/bai3_1',
+    name: 'Bai3_1',
+    component: () => import('../views/demoVuex.vue')
   },
   {
     path: '/dashboard',
@@ -62,6 +77,16 @@ const routes = [
     path: '/editUser',
     name: 'EditUser',
     component: () => import('../components/EditUser.vue')
+  },
+  {
+    path: '/card',
+    name: 'Card',
+    component: () => import('../components/Ex7/tableCart.vue')
+  },
+  {
+    path: '/client',
+    name: 'Client',
+    component: () => import('../components/Ex7/Exercise.vue')
   },
 ]
 

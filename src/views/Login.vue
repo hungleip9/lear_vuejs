@@ -21,6 +21,7 @@
         <div style="text-align: right; margin-top: 8px; margin-bottom: 24px">
           <el-link type="primary" style="padding-right:10px; color:#0080dd" @click="signup">Đăng Ký</el-link>
             <el-link type="primary" style="color:#0080dd" @click="dangky">Quên mật khẩu?</el-link>
+            <h3>Count: {{count}}</h3>
         </div>
         <el-button type="primary" :plain="true" @click="login" style="color:white">ĐĂNG NHẬP</el-button>
     </el-card>
@@ -28,9 +29,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     name: "login",
     components:{
+      ...mapState([
+              'count',
+            ])
     },
     data() {
         return {

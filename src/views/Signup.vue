@@ -29,7 +29,7 @@
             placeholder="Nhập lại mật khẩu"
             v-model="rpw">
         </el-input>
-        <el-button type="primary" :plain="true" @click="signup" style="color:white">ĐĂNG KÝ</el-button>
+        <el-button type="primary" :plain="true" @click="signup" :target="target" style="color:white">ĐĂNG KÝ</el-button>
     </el-card>
   </div>
 </template>
@@ -43,6 +43,7 @@ export default {
             email: '',
             pw: '',
             rpw: '',
+            target:'_blank'
         }
     },
     methods: {
