@@ -58,7 +58,7 @@
                             <div>12</div>
                         </i>
                         <el-dropdown >
-                            <el-avatar :size="40"></el-avatar>
+                            <el-avatar :size="40" :src="circleUrl"></el-avatar>
                             <el-dropdown-menu slot="dropdown" style="margin: 0; top: 70px !important">
                                 <el-dropdown-item style="border-top: 1px solid #F1F3F8">Thông tin tài khoản</el-dropdown-item>
                                 <router-link to="editUser" style="color: #fff;text-decoration:none">
@@ -77,30 +77,21 @@
           <template>
             <el-main>
               <el-table
-                  :data="products"
+                  :data="tableData"
                   border>
-                  <el-table-column prop="id" label="ID" width="120">
+                <el-table-column prop="date" label="Date" width="140">
                 </el-table-column>
-                <el-table-column prop="name" label="Name" width="140">
-                    <template v-slot:default="slotProps">
-                        <strong v-if="slotProps.row.id === 2">{{slotProps.row.name}}</strong>
-                        <span v-else>{{slotProps.row.name}}</span>
-                    </template>
+                <el-table-column prop="name" label="Name" width="120">
                 </el-table-column>
-                <el-table-column prop="price" label="Price" width="120">
-                </el-table-column>
-                <el-table-column prop="quantity" label="Quantity" width="120">
-                </el-table-column>
-                <el-table-column prop="hanhdong" label="HanhDong" width="120">
-                    <template v-slot:default="slotProps">
-                        <!-- <el-button type="danger">Xoa</el-button> -->
-                       <el-button type="danger" @click="clear(slotProps.row.id)">Xoa</el-button>
-                    </template>
+                <el-table-column prop="address" label="Address">
                 </el-table-column>
               </el-table>
               <div class="block" style="text-alight:left">
                 <el-pagination
                     background
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page.sync="currentPage4"
                     :page-sizes="[100, 200, 300, 400]"
                     :page-size="10"
                     layout="total, prev, pager, next, jumper"
@@ -115,24 +106,25 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
     name: 'BaseLayout',
-    computed:{
-        ...mapState('sanpham', [
-        'products',
-      ]),
-      ...mapGetters('sanpham', [
-        // Getter muốn gọi đến
-      ])
+    data() {
+      const item = {
+        date: '2016-05-02',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      };
+        return {
+            circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+          tableData: Array(4).fill(item),
+          currentPage1: 5,
+          currentPage2: 5,
+          currentPage3: 5,
+          currentPage4: 4,
+        }
     },
     methods: {
-        ...mapMutations('sanpham', [
-        'delete',
-      ]),
-      clear(id){
-           this.delete(id)
-      }
+        //
     },
 }
 </script>

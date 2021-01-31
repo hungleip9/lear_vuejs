@@ -36,10 +36,10 @@
             </div>
             <div>
                 <button class="paginationButton" @click="goPrePage" :class="{isButtonDisabled: isGoPrePageDisabled}">
-                    <img src="../../assets/back.svg" alt="">
+                    <img src="../../assets/back.png" alt="">
                 </button>
                 <button class="paginationButton" @click="goNextPage" :class="{isButtonDisabled: isGoNextPageDisabled}">
-                    <img src="../../assets/next.svg" alt="">
+                    <img src="../../assets/next.png" alt="">
                 </button>
             </div>
         </div>
