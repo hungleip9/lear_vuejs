@@ -88,6 +88,11 @@ const routes = [
     name: 'Ex9',
     component: () => import('../components/Ex9/Todo.vue')
   },
+  {
+    path: '/ex9/baitap',
+    name: 'Ex9BT',
+    component: () => import('../components/Ex9/Product.vue')
+  },
   // bai tap cuoi khoa
   {
     path: '/login',

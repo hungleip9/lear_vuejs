@@ -1,20 +1,32 @@
 <template>
     <div class="container">
         <div class="todoWrap">
-            <div class="appTitle">Todo App</div>
+            <div class="appTitle">Products</div>
+            
             <input
                 type="text"
-                placeholder="Nhập công việc và bấm enter để thêm"
-                v-model="title"
-                @keyup="handleKeyup"
-            >
-            <div class="listWrap" v-if="tasks.length > 0">
+                placeholder="Nhập tên sản phẩm"
+                v-model="name"
+            ><br>
+            <input
+                type="text"
+                placeholder="Nhập giá sản phẩm"
+                v-model="price"
+            ><br>
+            <input
+                type="text"
+                placeholder="Nhập bình luận cho sản phẩm"
+                v-model="description"
+            ><br>
+             <el-button type="primary" @click="handleKeyup">ADD</el-button>
+            <div v-if="tasks.length > 0">
                 <TodoItem
                     v-for="(task) in tasks"
                     :task="task"
                     :key="task.id"
                     @changeStatus="(value) => handleChangeStatus(value, task)"
                     @onDeleteItem="handleDeleteItem(task)"
+                    @onEditItem="(id) => handleEditFrom(id)"
                 />
             </div>
             <div v-else class="emptyWrap">
@@ -25,7 +37,7 @@
 </template>
 
 <script>
-  import TodoItem from './TodoItem'
+  import TodoItem from './ProductItem.vue'
   import axios from 'axios'
   export default {
     name: 'Todo',
@@ -39,50 +51,66 @@
       }
     },
     methods: {
-      handleKeyup (e) {
-        if (e.code === 'Enter') {
+      handleKeyup () {
+        
           axios({
             method: 'post',
-            url: 'http://vuecourse.zent.edu.vn/api/todos',
+            url: 'http://vuecourse.zent.edu.vn/api/products',
             data: {
-              title: this.title
+              name: this.name,
+              price: this.price,
+              description: this.description,
             }
           }).then(() => {
+              alert('thanh cong')
               this.getDataTodos()
-              this.title = ''
+              this.name = '',
+              this.price = '',
+              this.description = ''
           })
-        }
+        
       },
-      handleChangeStatus (value, task) {
-        axios({
-          method: 'put',
-          url: 'http://vuecourse.zent.edu.vn/api/todos/' + task.id,
-           data: {
-              is_complete: value
+      handleChangeStatus () {
+        
+      },
+      handleEditFrom (id) {
+          axios({
+            method: 'put',
+            url: 'http://vuecourse.zent.edu.vn/api/products/' + id,
+            data: {
+              name: this.name,
+              price: this.price,
+              description: this.description,
             }
-        }).then(() => {
-          this.getDataTodos()
-        })
+          }).then(() => {
+              alert('edit thanh cong')
+              this.getDataTodos()
+              this.name = '',
+              this.price = '',
+              this.description = ''
+          })
       },
       handleDeleteItem (task) {
         axios({
           method: 'delete',
-          url: 'http://vuecourse.zent.edu.vn/api/todos/' + task.id,
-        }).then(() => {
+          url: 'http://vuecourse.zent.edu.vn/api/products/' + task.id,
+            }).then(() => {
+        alert('Xóa thành công!')
           this.getDataTodos()
+          
         })
       },
-      getDataTodos() {
+      getDataProducts() {
         axios({
           method: 'get',
-          url: 'http://vuecourse.zent.edu.vn/api/todos',
+          url: 'http://vuecourse.zent.edu.vn/api/products',
         }).then((response) => {
           this.tasks = response.data.data.data
         })
       }
     },
     mounted(){
-      this.getDataTodos()
+      this.getDataProducts()
     },
   }
 </script>
@@ -105,8 +133,8 @@
         height: 100vh;
 
         .todoWrap {
-            width: 500px;
-            height: 500px;
+            width: 100%;
+            height: 100%;
             background: $colorWhite;
             border-radius: 10px;
             padding: 24px;
@@ -120,7 +148,7 @@
             }
 
             input {
-                width: 100%;
+                width: 25%;
                 height: 40px;
                 border: 1px solid $colorStroke;
                 border-radius: 5px;
@@ -133,12 +161,6 @@
                 &:focus {
                     border: 1px solid $colorMain;
                 }
-            }
-
-            .listWrap {
-                height: 350px;
-                overflow-y: scroll;
-                overflow-x: hidden;
             }
 
             .emptyWrap {
