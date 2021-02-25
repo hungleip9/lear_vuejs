@@ -6,7 +6,7 @@ export default {
         products: [
             {
               id: 1,
-              name: 'iPhone 12 Pro Max Chính Hãng',
+              name: 'iPhone 10 Pro Max Chính Hãng',
               image: 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2020-10-13_22-12-24.jpg_1_2.png',
               price: 32990000,
               quantity: 566,

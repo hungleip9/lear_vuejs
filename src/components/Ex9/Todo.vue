@@ -10,10 +10,10 @@
             >
             <div class="listWrap" v-if="tasks.length > 0">
                 <TodoItem
-                    v-for="(task) in tasks"
+                    v-for="(task, index) in tasks"
                     :task="task"
                     :key="task.id"
-                    @changeStatus="(value) => handleChangeStatus(value, task)"
+                    @changeStatus="(value) => handleChangeStatus(value, index)"
                     @onDeleteItem="handleDeleteItem(task)"
                 />
             </div>
@@ -23,9 +23,10 @@
         </div>
     </div>
 </template>
+
 <script>
- import TodoItem from "@/components/Ex3/B3_1_content.vue";
-import axios from 'axios'
+  import TodoItem from './TodoItem'
+  import axios from 'axios'
   export default {
     name: 'Todo',
     components: {
@@ -40,7 +41,7 @@ import axios from 'axios'
     methods: {
       handleKeyup (e) {
         if (e.code === 'Enter') {
-         axios({
+          axios({
             method: 'post',
             url: 'http://vuecourse.zent.edu.vn/api/todos' ,
             data: {
@@ -52,16 +53,8 @@ import axios from 'axios'
             })
         }
       },
-      handleChangeStatus (value, task) {
-        axios({
-        method: 'put',
-        url: 'http://vuecourse.zent.edu.vn/api/todos/' + task.id,
-        data: {
-            is_complete: value
-        }
-        }).then(() => {
-            this.getDataList()
-        })
+      handleChangeStatus (value, index) {
+        this.tasks[index].isComplete = value
       },
       handleDeleteItem (task) {
         axios({
@@ -87,27 +80,31 @@ import axios from 'axios'
     }
   }
 </script>
+
 <style lang="scss" scoped>
-    $colorStroke: #D8E0EA;
-    $colorMain: #0080DD;
+    $colorStroke: #d8e0ea;
+    $colorMain: #0080dd;
     $colorDefault: #253036;
-    $colorGreen: #39CD74;
-    $colorRed: #F54B5E;
-    $colorTableHeader: #F2F6FE;
+    $colorGreen: #39cd74;
+    $colorRed: #f54b5e;
+    $colorTableHeader: #f2f6fe;
     $colorWhite: #fff;
-    $colorOrange: #F2994A;
+    $colorOrange: #f2994a;
+
     .container {
         display: flex;
         align-items: center;
         justify-content: center;
         background: $colorMain;
         height: 100vh;
+
         .todoWrap {
             width: 500px;
             height: 500px;
             background: $colorWhite;
             border-radius: 10px;
             padding: 24px;
+
             .appTitle {
                 font-size: 24px;
                 font-weight: bold;
@@ -115,6 +112,7 @@ import axios from 'axios'
                 text-align: center;
                 margin-bottom: 20px;
             }
+
             input {
                 width: 100%;
                 height: 40px;
@@ -123,17 +121,20 @@ import axios from 'axios'
                 outline: unset;
                 font-size: 14px;
                 margin-bottom: 24px;
+
                 &:hover,
                 &:active,
                 &:focus {
                     border: 1px solid $colorMain;
                 }
             }
+
             .listWrap {
                 height: 350px;
                 overflow-y: scroll;
                 overflow-x: hidden;
             }
+
             .emptyWrap {
                 height: 350px;
                 display: flex;

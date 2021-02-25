@@ -1,49 +1,19 @@
 <template>
-  <div class="container">
-      <div class="content">
-        <Header @onCreateWork="getData" />
-        <Content :keywords="keyword" :carts="cart" />
-      </div>
-    
+  <div>
+    {{formatDate('02/24/2021 18:12:23')}}
   </div>
-
 </template>
 
 <script>
-import Header from './B3_1_header'
-import Content from './B3_1_content'
-export default {
-  components:{
-    Header,
-    Content,
-  },
-  data (){
-    return{
-        keyword:'',
-        cart:'',
-    }
-  },
-  methods: {
-    getData(data) {
-      this.keyword = data.keyword
-      this.cart = data.cart
-    },
-  },
-}
-</script>
+  import moment from 'moment'
 
-<style lang="scss" scoped>
-     .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 800px;
-    background: #0580dd;
-    .content {
-        width: 500px;
-        height: 600px;
-        background: white;
-        border-radius: 10px;
+  export default {
+    name: 'HelloWorld',
+    methods: {
+      formatDate (dateString) {
+        // Format từ dạng "02/24/2021 18:12:23" thành định dạng kiểu: "24/02/2021"
+        return moment(dateString).format('DD/MM/YYYY')
+      }
     }
   }
-</style>
+</script>

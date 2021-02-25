@@ -54,6 +54,11 @@ const routes = [
     component: () => import('../views/DangKy.vue')
   },
   {
+    path: '/signupTrello',
+    name: 'SignupTrello',
+    component: () => import('../views/BaiTapCuoiKhoa/SignupTrello.vue')
+  },
+  {
     path: '/signup',
     name: 'Signup',
     component: () => import('../views/Signup.vue')
@@ -73,6 +78,29 @@ const routes = [
     name: 'Client',
     component: () => import('../components/Ex7/Exercise.vue')
   },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import('../views/demoVuex.vue')
+  },
+  {
+    path: '/ex9',
+    name: 'Ex9',
+    component: () => import('../components/Ex9/Todo.vue')
+  },
+  // bai tap cuoi khoa
+  {
+    path: '/login',
+    name: 'LoginTrello',
+    component: () => import('../views/BaiTapCuoiKhoa/LoginTrello.vue')
+  },
+  // trang chu main
+  {
+    path: '/main',
+    name: 'MainTrello',
+    component: () => import('../views/BaiTapCuoiKhoa/Main.vue')
+  },
+
 ]
 
 const router = new VueRouter({

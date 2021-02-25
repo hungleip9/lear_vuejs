@@ -4,6 +4,7 @@ import home from './modules/home'
 import sanpham from './sanpham/sanpham'
 import hoadon from './sanpham/hoadon'
 import bai5 from '../views/Admin.vue'
+import main from '../views/BaiTapCuoiKhoa/Main.vue'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -19,6 +20,7 @@ const store = new Vuex.Store({
     sanpham,
     hoadon,
     bai5,
+    main,
   }
 })
 

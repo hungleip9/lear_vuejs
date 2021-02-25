@@ -1,17 +1,16 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <h3>Count: {{count}}</h3>
-    <h3>Name: {{name}}</h3>
-    <button @click="onClick">click me</button>
+    <HelloWorld />
+    <todo />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { mapState, mapGetters, mapMutations } from 'vuex'
+
 import HelloWorld from '@/components/HelloWorld.vue'
+import todo from '@/components/Ex3/B3_1_header.vue'
 export default {
   name: 'Home',
   data(){
@@ -30,10 +29,11 @@ export default {
       ])
   },
   mounted(){
-    
+   
   },
   components: {
-    HelloWorld
+    HelloWorld,
+    todo
   },
   methods: {
     ...mapMutations('home', [

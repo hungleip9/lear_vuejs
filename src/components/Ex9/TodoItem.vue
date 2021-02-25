@@ -13,6 +13,7 @@
         </button>
     </div>
 </template>
+
 <script>
   export default {
     name: 'TodoItem',
@@ -34,11 +35,13 @@
     }
   }
 </script>
+
 <style lang="scss" scoped>
-    $colorStroke: #D8E0EA;
+    $colorStroke: #d8e0ea;
     $colorDefault: #253036;
-    $colorRed: #F54B5E;
+    $colorRed: #f54b5e;
     $colorWhite: #fff;
+
     .wrap {
         display: flex;
         align-items: center;
@@ -46,13 +49,16 @@
         height: 60px;
         padding: 12px;
         border-bottom: 1px solid $colorStroke;
+
         .title {
             margin-left: 12px;
             color: $colorDefault;
+
             &.complete {
                 text-decoration: line-through;
             }
         }
+
         .deleteButton {
             background: $colorRed;
             border: unset;

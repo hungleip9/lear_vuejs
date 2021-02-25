@@ -49,7 +49,6 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import tableCart from './tableCart'
 export default {
 
   data() {
@@ -86,7 +85,7 @@ export default {
         alert('Sản phẩm hết hàng');
       }
     },
-    clear(id) {
+    clear() {
       this.clear()
     },
     onchange(id, value) {
@@ -134,7 +133,6 @@ export default {
     ]),
   },
   components:{
-    tableCart,
   },
 };
 </script>
