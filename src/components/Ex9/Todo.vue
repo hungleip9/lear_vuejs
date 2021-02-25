@@ -10,10 +10,10 @@
             >
             <div class="listWrap" v-if="tasks.length > 0">
                 <TodoItem
-                    v-for="(task, index) in tasks"
+                    v-for="(task) in tasks"
                     :task="task"
                     :key="task.id"
-                    @changeStatus="(value) => handleChangeStatus(value, index)"
+                    @changeStatus="(value) => handleChangeStatus(value, task)"
                     @onDeleteItem="handleDeleteItem(task)"
                 />
             </div>
@@ -53,8 +53,16 @@
             })
         }
       },
-      handleChangeStatus (value, index) {
-        this.tasks[index].isComplete = value
+      handleChangeStatus (value, task) {
+        axios({
+            method: 'put',
+            url: 'http://vuecourse.zent.edu.vn/api/todos/' + task.id,
+            data: {
+                is_complete: value
+            }
+            }).then(() => {
+                this.getDataList()
+            })
       },
       handleDeleteItem (task) {
         axios({
