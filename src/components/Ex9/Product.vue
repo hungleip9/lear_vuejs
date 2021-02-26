@@ -19,6 +19,7 @@
                 v-model="description"
             ><br>
              <el-button type="primary" @click="handleKeyup">ADD</el-button>
+             <el-button type="success" @click="EditItem">EDIT</el-button>
             <div v-if="tasks.length > 0">
                 <TodoItem
                     v-for="(task) in tasks"
@@ -47,7 +48,8 @@
     data () {
       return {
         tasks: [],
-        title: ''
+        title: '',
+        id: ''
       }
     },
     methods: {
@@ -74,9 +76,13 @@
         
       },
       handleEditFrom (id) {
-          axios({
+        this.id = id
+        alert('bat dau edit')
+      },
+      EditItem(){
+        axios({
             method: 'put',
-            url: 'http://vuecourse.zent.edu.vn/api/products/' + id,
+            url: 'http://vuecourse.zent.edu.vn/api/products/' + this.id,
             data: {
               name: this.name,
               price: this.price,
@@ -88,7 +94,14 @@
               this.name = '',
               this.price = '',
               this.description = ''
-          })
+          }).catch(() => {
+            if(this.name === ''){
+              alert('tên không được rỗng')
+            }else{
+              alert('giá không được rỗng')
+            }
+            
+      });
       },
       handleDeleteItem (task) {
         axios({
