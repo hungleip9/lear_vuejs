@@ -18,8 +18,14 @@
                 placeholder="Nhập bình luận cho sản phẩm"
                 v-model="description"
             ><br>
-             <el-button type="primary" @click="handleKeyup">ADD</el-button>
-             <el-button type="success" @click="EditItem">EDIT</el-button>
+             <el-button type="primary" @click="handleKeyup" v-if="this.edit === false">ADD</el-button><br><br>
+             <el-button type="success" @click="EditItem" v-if="this.edit === true">EDIT</el-button><br><br>
+             <input
+                type="text"
+                placeholder="Nhập ten cho sản phẩm"
+                v-model="q"
+            ><br>
+            <el-button type="primary" @click="search">Tim Kiem</el-button>
             <div v-if="tasks.length > 0">
                 <TodoItem
                     v-for="(task) in tasks"
@@ -49,10 +55,19 @@
       return {
         tasks: [],
         title: '',
-        id: ''
+        id: '',
+        edit: false,
       }
     },
     methods: {
+      search() {
+        axios({
+          method: 'get',
+          url: 'http://vuecourse.zent.edu.vn/api/products/?q=' + this.q,
+        }).then((response) => {
+          this.tasks = response.data.data.data
+        })
+      },
       handleKeyup () {
         
           axios({
@@ -77,9 +92,11 @@
       },
       handleEditFrom (id) {
         this.id = id
+        this.edit = true
         alert('bat dau edit')
       },
       EditItem(){
+        this.edit = false
         axios({
             method: 'put',
             url: 'http://vuecourse.zent.edu.vn/api/products/' + this.id,
@@ -97,7 +114,7 @@
           }).catch(() => {
             if(this.name === ''){
               alert('tên không được rỗng')
-            }else{
+            }else if( this.price === ''){
               alert('giá không được rỗng')
             }
             
