@@ -18,14 +18,21 @@
                 placeholder="Nhập bình luận cho sản phẩm"
                 v-model="description"
             ><br>
-             <el-button type="primary" @click="handleKeyup" v-if="this.edit === false">ADD</el-button><br><br>
-             <el-button type="success" @click="EditItem" v-if="this.edit === true">EDIT</el-button><br><br>
+             <el-button type="primary" @click="handleKeyup" v-if="this.edit === false" :plain="true">ADD</el-button><br><br>
+             <el-button type="success" @click="EditItem" v-if="this.edit === true" :plain="true">EDIT</el-button><br><br>
              <input
                 type="text"
                 placeholder="Nhập ten cho sản phẩm"
                 v-model="q"
+                class="search"
             ><br>
-            <el-button type="primary" @click="search">Tim Kiem</el-button>
+            <el-button type="primary" @click="search" :plain="true">Tim Kiem</el-button><br><br><br>
+            <input
+                type="file"
+                placeholder="Nhập ten cho sản phẩm"
+                @change="onChangeImage"
+            ><br>
+            <el-button type="primary" @click="uploadFile" :plain="true">Upload File</el-button><br><br><br>
             <div v-if="tasks.length > 0">
                 <TodoItem
                     v-for="(task) in tasks"
@@ -33,8 +40,11 @@
                     :key="task.id"
                     @changeStatus="(value) => handleChangeStatus(value, task)"
                     @onDeleteItem="handleDeleteItem(task)"
-                    @onEditItem="(id) => handleEditFrom(id)"
+                    @onEditItem="(task) => handleEditFrom(task)"
                 />
+                <el-pagination>
+             
+            </el-pagination>
             </div>
             <div v-else class="emptyWrap">
                 Chưa có task nào được thêm
@@ -57,6 +67,7 @@
         title: '',
         id: '',
         edit: false,
+        image: '',
       }
     },
     methods: {
@@ -67,6 +78,25 @@
         }).then((response) => {
           this.tasks = response.data.data.data
         })
+      },
+      onChangeImage(e) {
+        if(e.target.files.length) {
+          this.image = e.target.files[0]
+        }
+      },
+      uploadFile() {
+        const formData =new FormData();
+        formData.append('name', 'hungle')
+        formData.append('price', 8500)
+        formData.append('image', this.image)
+
+          axios({
+            method: 'post',
+            url: 'http://vuecourse.zent.edu.vn/api/products',
+            data: formData,
+          }).then(() => {
+              this.$message.success('Thành công.');
+          })
       },
       handleKeyup () {
         
@@ -79,8 +109,8 @@
               description: this.description,
             }
           }).then(() => {
-              alert('thanh cong')
-              this.getDataTodos()
+              this.$message.success('Thành công.');
+              this.getDataProducts(),
               this.name = '',
               this.price = '',
               this.description = ''
@@ -90,13 +120,16 @@
       handleChangeStatus () {
         
       },
-      handleEditFrom (id) {
-        this.id = id
+      handleEditFrom (task) {
+        this.id = task.id
+        this.name = task.name
+        this.price = task.price
+        this.description = task.description
         this.edit = true
-        alert('bat dau edit')
+        this.$message.success('Bắt đầu Edit.')
+        this.getDataProducts()
       },
       EditItem(){
-        this.edit = false
         axios({
             method: 'put',
             url: 'http://vuecourse.zent.edu.vn/api/products/' + this.id,
@@ -106,27 +139,28 @@
               description: this.description,
             }
           }).then(() => {
-              alert('edit thanh cong')
-              this.getDataTodos()
+              this.$message.success('Edit thành công.');
+              this.getDataProducts()
               this.name = '',
               this.price = '',
-              this.description = ''
+              this.description = '',
+              this.edit = false
           }).catch(() => {
             if(this.name === ''){
-              alert('tên không được rỗng')
-            }else if( this.price === ''){
-              alert('giá không được rỗng')
+              this.$message.error('Tên không được rỗng.');
+            }else{
+               this.$message.error('Giá không được rỗng.');
             }
             
-      });
+        });
       },
       handleDeleteItem (task) {
         axios({
           method: 'delete',
           url: 'http://vuecourse.zent.edu.vn/api/products/' + task.id,
             }).then(() => {
-        alert('Xóa thành công!')
-          this.getDataTodos()
+        this.$message.success('Xóa thành công!');
+          this.getDataProducts()
           
         })
       },
@@ -161,7 +195,6 @@
         justify-content: center;
         background: $colorMain;
         height: 100vh;
-
         .todoWrap {
             width: 100%;
             height: 100%;

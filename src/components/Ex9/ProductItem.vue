@@ -1,4 +1,5 @@
 <template>
+
     <div class="wrap">
         <div>
             <table class="table">
@@ -30,6 +31,7 @@
             
         </div>
     </div>
+
 </template>
 
 <script>
@@ -67,6 +69,7 @@
     .wrap {
         display: flex;
         align-items: center;
+        margin-left: 38%;
         
 
         .table {

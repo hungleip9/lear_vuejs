@@ -86,7 +86,7 @@ const routes = [
   {
     path: '/ex9',
     name: 'Ex9',
-    component: () => import('../components/Ex9/Todo.vue')
+    component: () => import('../components/Ex9/Ex9.vue')
   },
   {
     path: '/ex9/baitap',
