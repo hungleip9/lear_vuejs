@@ -1,89 +1,151 @@
 <template>
-  <div class="login">
-    <el-card>
-      <el-image
-        style="width: 51% !important; margin-bottom: 24px"
-        src="/logo-login.2d516aef.png"
-        fill>
-
-      </el-image>
-        <el-input
-            style="padding: 10px 0;"
-            placeholder="Email"
-            v-model="email">
-        </el-input>
-        <el-input
-            type="password"
-            style="padding: 10px 0;"
-            placeholder="Mật khẩu"
-            v-model="pw">
-        </el-input>
-        <div style="text-align: right; margin-top: 8px; margin-bottom: 24px">
-          <el-link type="primary" style="padding-right:10px; color:#0080dd" @click="signup">Đăng Ký</el-link>
-            <el-link type="primary" style="color:#0080dd" @click="dangky">Quên mật khẩu?</el-link>
-            <h3>Count: {{count}}</h3>
+    <div class="container">
+        <div class="loginWrap">
+            <div class="inputWrap">
+                <div class="inputLabel">Tên đăng nhập</div>
+                <input type="text" v-model="email">
+            </div>
+            <div class="inputWrap">
+                <div class="inputLabel">Mật khẩu</div>
+                <input type="password" v-model="password">
+            </div>
+            <button @click="handleLogin()">Đăng nhập</button>
         </div>
-        <el-button type="primary" :plain="true" @click="login" style="color:white">ĐĂNG NHẬP</el-button>
-    </el-card>
-  </div>
+        <div class="registerWrap">
+            <div class="inputWrap">
+                <div class="inputLabel">Họ tên</div>
+                <input type="text" v-model="name">
+            </div>
+            <div class="inputWrap">
+                <div class="inputLabel">Email</div>
+                <input type="text" v-model="newEmail">
+            </div>
+            <div class="inputWrap">
+                <div class="inputLabel">Mật khẩu</div>
+                <input type="password" v-model="newPassword">
+            </div>
+            <button @click="handleRegister()">Đăng ký</button>
+        </div>
+    </div>
 </template>
-
 <script>
-import { mapState } from 'vuex'
-export default {
-    name: "login",
-    components:{
-      ...mapState([
-              'count',
-            ])
+  import {mapState, mapMutations} from 'vuex'
+  import api from '../api'
+  export default {
+    name: 'Login',
+    data () {
+      return {
+        email: '',
+        password: '',
+        name: '',
+        newEmail: '',
+        newPassword: '',
+      }
     },
-    data() {
-        return {
-            email: '',
-            pw: '',
-        }
+    computed: {
+      ...mapState('auth', ['isAuthenticated']),
     },
     methods: {
-        login() {
-            if (this.email != '' && this.pw != '') {
-                this.$emit("authenticated", true);
-                this.$router.replace({ name: "Admin" });
-            }
-            else if(this.email == ''){
-              this.$message.error('Email không được trống.');
-              this.$router.replace({ name: "Login" });
-            }
-          else if(this.pw == ''){
-            this.$message.error('Mật khẩu không được trống.');
-            this.$router.replace({ name: "Login" });
+      ...mapMutations('auth', ['updateLoginStatus']),
+      handleRegister () {
+        let data = {
+          name: this.name,
+          email: this.newEmail,
+          password: this.newPassword,
+        }
+        api.register(data).then(() => {
+          this.$message({message: 'Success', type: 'success'});
+        }).catch(() => {
+          this.$message({message: 'Error', type: 'error'});
+        })
+      },
+      handleLogin () {
+        let data = {
+          email: this.email,
+          password: this.password,
+        }
+        api.login(data).then((response) => {
+          this.$message({message: 'Success', type: 'success'});
+          localStorage.setItem('access_token', response.data.access_token)
+          this.updateLoginStatus({isAuthenticated: true})
+          if (this.$router.currentRoute.name !== 'Home') {
+            this.$router.push({ name: 'Home' })
           }
-        },
-      dangky(){
-        this.$router.replace({ name: "Dangky" });
-      },
-      signup(){
-        this.$router.replace({ name: "Signup" });
-      },
+        }).catch(() => {
+          this.$message({message: 'Error', type: 'error'});
+        })
+      }
     }
-}
+  }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(to bottom right,  #0595E7, #7ECFC7);
-    height: 700px;
-    .el-card {
-        width: 29%;
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 500px;
+        .loginWrap {
+            background: #f5f5f5;
+            border: 1px solid #6E6E6E;
+            padding: 24px;
+            height: 250px;
+            width: 300px;
+            .inputWrap {
+                margin-bottom: 12px;
+                .inputLabel {
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                    text-align: left;
+                }
+                input {
+                    width: 292px;
+                    height: 30px;
+                }
+            }
+            button {
+                width: 100%;
+                height: 40px;
+                border-radius: 5px;
+                margin-top: 20px;
+                background: #0080dd;
+                color: #fff;
+                border: unset;
+                font-weight: bold;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
+        .registerWrap {
+            background: #f5f5f5;
+            border: 1px solid #6E6E6E;
+            padding: 24px;
+            height: 300px;
+            width: 300px;
+            margin-left: 50px;
+            .inputWrap {
+                margin-bottom: 12px;
+                .inputLabel {
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                    text-align: left;
+                }
+                input {
+                    width: 292px;
+                    height: 30px;
+                }
+            }
+            button {
+                width: 100%;
+                height: 40px;
+                border-radius: 5px;
+                margin-top: 20px;
+                background: #0080dd;
+                color: #fff;
+                border: unset;
+                font-weight: bold;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
     }
-}
-.el-button {
-    width: 100%;
-    background-color: #0080dd;
-    font-size: 14px;
-    line-height: 18px;
-}
 </style>
